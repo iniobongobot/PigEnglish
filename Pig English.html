@@ -1,0 +1,90 @@
+<!DOCTYPE html5>
+<html>
+<head>
+	<title>Pig English</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body oninput="PigEnglish(); EnglishPig()">
+	<main>
+		<h1>Pig English</h1>
+		<button id="Reverse">Reverse</button>
+		<div id="EngPig">
+			<h3>English</h3> <textarea rows="10" cols="40" id="Engli"></textarea>
+		
+			<h3>Pig</h3> <textarea rows="10" cols="40" id="Pig"></textarea>
+		</div>
+
+		<div id="PigEng" style="display:none">
+			<h3>Pig</h3> <textarea rows="10" cols="40" id="Pig2"></textarea>
+		<br>
+			<h3>English</h3> <textarea rows="10" cols="40" id="li2"></textarea>
+		</div>
+	</main>
+</body>
+</html>
+
+<script type="text/javascript">
+	const Pigcons = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	const Pigvow = ["a", "e", "i", "o", "u"];
+	function PigEnglish(){
+		var Engli = document.getElementById('Engli').value;
+		var Pig = document.getElementById('Pig').value;
+		var three = []
+		Engli = Engli.toLowerCase().split(" ")
+		for (var i = 0; i < Engli.length; i++){
+			var one = Engli[i];
+			
+			var two = one.substring(2) + one.substring(0,2);
+			var two = Pigvow[Math.floor(Math.random()*Pigvow.length)] + two;
+			var two = Pigcons[Math.floor(Math.random()*Pigcons.length)] + two + 'ay';
+			three.push(two)
+		}
+		//three.shift();
+		var four = three.join(' ');
+		
+		document.getElementById('Pig').value = four;
+	
+		
+	}
+
+	function EnglishPig(){
+		var Pig2 = document.getElementById('Pig2').value;
+		var pigarr = [];
+		Pig2 = Pig2.toLowerCase().split(" ");
+		for (var k = 0; k < Pig2.length; k++){
+
+			var six = Pig2[k];
+			var leng = six.length-2;
+			six = six.substring(2, leng);
+			var leng2 = six.length-2;
+			var sev = six.substring(leng2);
+			var siv = six.slice(0, -2);
+			
+			pigarr.push(sev+siv);
+			
+		};
+		var ret = pigarr.join(' ');
+		
+		document.getElementById('li2').value = ret;
+		console.log(sev);
+		console.log(siv);		
+	}
+
+	$(document).ready(function(){
+		$('#Reverse').click(function(){
+			$('#EngPig').toggle(5);
+			$('#PigEng').toggle(5);
+		});
+		
+
+	});
+</script>
+
+<style type="text/css">
+	main{
+		width: 60%;
+		margin: 5% 20%;
+		text-align: center;
+	}
+</style>
